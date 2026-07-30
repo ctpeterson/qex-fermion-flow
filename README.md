@@ -1,2 +1,2 @@
 # qex-fermion-flow
-Small snippet of QEX code for doing fermion flow with fermion bilinears
+Contains Quantum EXpressions (QEX) code for calculating fermion-flowed fermion bilinears. Contains additional Nim bindings for saving data to HDF5 format.
