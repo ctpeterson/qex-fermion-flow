@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<grid>
+  <global>
+    <!-- trajectory loop, the trajectory number is appended as a suffix -->
+    <!-- to file read an written by modules. It is also part of the     -->
+    <!-- RNG seed.                                                      -->
+    <trajCounter>
+      <start>1500</start>
+      <end>1520</end>
+      <step>20</step>
+    </trajCounter>
+    <database>
+      <!-- application database (schedule, graph, object catalog, ...) -->
+      <applicationDb>app.db</applicationDb>
+      <!-- result database (result file catalog) -->
+      <resultDb>results.db</resultDb>
+      <!-- restore module graph from application DB? -->
+      <restoreModules>false</restoreModules>
+      <!-- restore memory profile from application DB? -->
+      <restoreMemoryProfile>false</restoreMemoryProfile>
+      <!-- restore schedule from application DB? -->
+      <restoreSchedule>false</restoreSchedule>
+      <!-- statistics DB stem (deactivated if empty)? -->
+      <statDbBase>./foo</statDbBase>
+      <!-- statistics DB sampling interval in ms -->
+      <statDbPeriodMs>500</statDbPeriodMs>
+      <statDbAllRanks>false</statDbAllRanks>
+    </database>
+    <!-- genetic scheduler parameters -->
+    <genetic>
+      <!-- population of schedules -->
+      <popSize>20</popSize>
+      <!-- maximum number of generations -->
+      <maxGen>1000</maxGen>
+      <!-- stop if memory footprint does no improve for maxCstGen generations -->
+      <maxCstGen>100</maxCstGen>
+      <!-- mutation rate -->
+      <mutationRate>0.1</mutationRate>
+    </genetic>
+    <!-- scheduler type (naive or genetic) -->
+    <scheduler>
+      <schedulerType>genetic</schedulerType>
+    </scheduler>
+    <!-- run id (is part of seed for random numbers!) -->
+    <runId>flow-bilinears</runId>
+    <!-- output GraphViz file if not empty -->
+    <graphFile></graphFile>
+    <!-- output schedule file name (deprecated, use DB) -->
+    <scheduleFile></scheduleFile>
+    <!-- save schedule file? (deprecated, use DB) -->
+    <saveSchedule>false</saveSchedule>
+    <!-- Resilient IO, reread files after parallel file and try to re-write -->
+    <!-- them if checksum test fails. parallelWriteMaxRetry is the number   -->
+    <!-- of retry after checksum failure, -1 means no check at all.         -->
+    <!-- Unless you have some suspicion your parallel FS or MPI is          -->
+    <!-- corrupting files you should probably use -1.                       -->
+    <parallelWriteMaxRetry>-1</parallelWriteMaxRetry>
+  </global>
+  <flowBilinears>
+    <!-- NERSC gauge configuration stem (trajectory number is appended); -->
+    <!-- leave empty for a unit gauge field                              -->
+    <gaugeFile></gaugeFile>
+    <!-- DWF action -->
+    <Ls>12</Ls>
+    <M5>1.8</M5>
+    <mass>0.25</mass>
+    <boundary>1 1 1 -1</boundary>
+    <twist>0. 0. 0. 0.</twist>
+    <!-- solver -->
+    <residual>1e-8</residual>
+    <maxIteration>10000</maxIteration>
+    <!-- number of Z2 noise hits -->
+    <numSources>4</numSources>
+    <!-- Wilson fermion flow -->
+    <flowSteps>10</flowSteps>
+    <flowStepSize>0.01</flowStepSize>
+    <measInterval>5</measInterval>
+    <flowBC>-1</flowBC>
+    <!-- bilinears: "all" or space-separated list, e.g. "Identity Gamma5 dslash" -->
+    <bilinears>all</bilinears>
+    <!-- output file stem -->
+    <output>bilinears/flow_bilinears</output>
+  </flowBilinears>
+</grid>
